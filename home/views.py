@@ -139,15 +139,19 @@ def login(request):
 
 
 from django.contrib.auth.models import User
-from .serializers import UserSerializer
+from .serializers import RegisterSerializer
 
 
 class RegisterAPI(APIView):
     
     def post(self, request):
         data = request.data
-        serializer = UserSerializer(data=data)
+        serializer = RegisterSerializer(data=data)
 
         if not serializer.is_valid():
             return Response({"status" : False,
                              "message" : serializer.errors},  status = status.HTTP_400_BAD_REQUEST)
+        
+        serializer.save()
+        return Response({"status" : "Success",
+                             "message" : "User created successfully"},  status = status.HTTP_200_OK)

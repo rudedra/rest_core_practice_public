@@ -1,4 +1,4 @@
-from home.views import index, person, login, PersonAPI, PeopleViewSet
+from home.views import index, person, login, PersonAPI, PeopleViewSet, RegisterAPI
 from django.urls import path, include
 
 
@@ -13,5 +13,6 @@ urlpatterns = [
     path("index/", index), 
     path("person/", person),
     path("login/", login),
-    path("personapiclass/", PersonAPI.as_view())
+    path("personapiclass/", PersonAPI.as_view()),
+    path("register/", RegisterAPI.as_view()),
 ]
